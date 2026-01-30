@@ -8,10 +8,14 @@
     "start": "next start",
     "prisma:push": "prisma db push",
     "seed": "node scripts/seed.js",
-    "test": "vitest run"
+    "test": "vitest run",
+    "crawl": "tsx src/scrapers/cli.ts",
+    "crawl:example": "npm run crawl -- --source=example"
   },
   "dependencies": {
     "@prisma/client": "^5.20.0",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.4.5",
     "next": "14.2.5",
     "react": "18.3.1",
     "react-dom": "18.3.1"
@@ -21,6 +25,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "prisma": "^5.20.0",
+    "tsx": "^4.19.2",
     "typescript": "^5.5.4",
     "vitest": "^1.6.0"
   }

@@ -56,11 +56,42 @@ model Offer {
 model Source {
   id           String   @id @default(cuid())
   bootId       String?
-  sourceUrl    String
+  sourceUrl    String   @unique
   rawTitle     String?
   rawSpecsBlob String?
-  lastSeenAt   DateTime?
+  lastSeenAt   DateTime
   createdAt    DateTime @default(now())
 
   boot Boot? @relation(fields: [bootId], references: [id], onDelete: SetNull)
+
+  @@index([lastSeenAt])
+}
+
+model CrawlUrl {
+  id            String   @id @default(cuid())
+  sourceName    String
+  url           String
+  status        String
+  lastError     String?
+  httpStatus    Int?
+  etag          String?
+  lastFetchedAt DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([sourceName, url])
+}
+
+model CrawlRun {
+  id             String   @id @default(cuid())
+  sourceName     String
+  mode           String
+  startedAt      DateTime @default(now())
+  finishedAt     DateTime?
+  discoveredCount Int     @default(0)
+  fetchedCount   Int      @default(0)
+  parsedCount    Int      @default(0)
+  upsertedCount  Int      @default(0)
+  failedCount    Int      @default(0)
+  log            String?
 }

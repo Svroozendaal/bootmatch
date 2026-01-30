@@ -1,6 +1,6 @@
 # BootMatch
 
-BootMatch is a minimal MVP that resolves a renter’s ski boot (brand + model + optional flex/year) to a canonical boot record and returns the top 10 similar-fitting boots.
+BootMatch is a minimal MVP that resolves a renter's ski boot (brand + model + optional flex/year) to a canonical boot record and returns the top 10 similar-fitting boots.
 
 ## What it does
 - Resolves boot names with exact + fuzzy matching
@@ -32,6 +32,18 @@ Or via the admin page (POST `/api/seed`).
 ```bash
 npm run test
 ```
+
+## Scraping / ingestion CLI
+Scraping runs as separate CLI jobs (not in the Next.js runtime).
+
+```bash
+npm run crawl -- --source=example --mode=discover --limit=20
+npm run crawl -- --source=example --mode=parse --limit=10
+npm run crawl -- --source=example --mode=ingest --limit=10
+```
+
+Raw page data is stored in `Source.rawSpecsBlob`, and crawl bookkeeping is stored in `CrawlUrl`.
+Respect robots.txt and site terms when adding real URLs.
 
 ## Push to GitHub
 ```bash
