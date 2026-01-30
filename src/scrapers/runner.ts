@@ -124,6 +124,10 @@ export async function runCrawl(options: CrawlOptions) {
           stats.parsed += 1;
         }
 
+        if (options.dryRun) {
+          console.log(JSON.stringify(envelope.parsed, null, 2));
+        }
+
         const rawSpecsBlob = JSON.stringify({
           rawSpecs: envelope.rawSpecs,
           parsed: envelope.parsed

@@ -10,7 +10,8 @@
     "seed": "node scripts/seed.js",
     "test": "vitest run",
     "crawl": "tsx src/scrapers/cli.ts",
-    "crawl:example": "npm run crawl -- --source=example"
+    "crawl:example": "npm run crawl -- --source=example",
+    "crawl:evo": "npm run crawl -- --source=evo"
   },
   "dependencies": {
     "@prisma/client": "^5.20.0",
