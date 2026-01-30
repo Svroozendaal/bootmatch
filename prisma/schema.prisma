@@ -1,0 +1,66 @@
+// Prisma schema for BootMatch MVP
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Boot {
+  id            String      @id @default(cuid())
+  brand         String
+  modelLine     String
+  variant       String?
+  year          Int?
+  canonicalName String      @unique
+  lastMm        Int?
+  volumeClass   String?
+  flexIndex     Int?
+  heelHold      String?
+  instepHeight  String?
+  forefootShape String?
+  imageUrl      String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  aliases BootAlias[]
+  offers  Offer[]
+  sources Source[]
+}
+
+model BootAlias {
+  id        String   @id @default(cuid())
+  bootId    String
+  alias     String   @unique
+  createdAt DateTime @default(now())
+
+  boot Boot @relation(fields: [bootId], references: [id], onDelete: Cascade)
+}
+
+model Offer {
+  id            String   @id @default(cuid())
+  bootId        String
+  retailer      String
+  price         Float
+  currency      String   @default("EUR")
+  url           String
+  lastCheckedAt DateTime?
+  createdAt     DateTime @default(now())
+
+  boot Boot @relation(fields: [bootId], references: [id], onDelete: Cascade)
+}
+
+model Source {
+  id           String   @id @default(cuid())
+  bootId       String?
+  sourceUrl    String
+  rawTitle     String?
+  rawSpecsBlob String?
+  lastSeenAt   DateTime?
+  createdAt    DateTime @default(now())
+
+  boot Boot? @relation(fields: [bootId], references: [id], onDelete: SetNull)
+}
