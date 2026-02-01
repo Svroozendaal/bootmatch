@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.section {
+  margin-top: 24px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tableWrap {
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  overflow-x: auto;
+}
+
+.aliasForm {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(160px, 220px) minmax(200px, 1fr) auto;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .aliasForm {
+    grid-template-columns: 1fr;
+  }
+}

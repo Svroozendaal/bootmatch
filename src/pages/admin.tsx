@@ -1,4 +1,6 @@
-import { FormEvent, useEffect, useState } from "react";
+﻿import { FormEvent, useEffect, useState } from "react";
+import AppShell from "../components/AppShell";
+import styles from "../styles/admin.module.css";
 
 type BootRow = {
   id: string;
@@ -57,44 +59,54 @@ export default function AdminPage() {
   };
 
   return (
-    <main>
-      <h1>Admin</h1>
-      <p className="notice">Seed the database and manage aliases.</p>
-      <button className="button" onClick={seed} disabled={loading}>
-        {loading ? "Seeding..." : "Seed database"}
-      </button>
-      {message && <p className="notice">{message}</p>}
+    <AppShell title="Admin">
+      <div className={styles.header}>
+        <div>
+          <h1>Admin</h1>
+          <p className="notice">Seed the database and manage aliases.</p>
+        </div>
+        <div className={styles.actions}>
+          <button className="button" onClick={seed} disabled={loading}>
+            {loading ? "Seeding..." : "Seed database"}
+          </button>
+          {message && <span className="notice">{message}</span>}
+        </div>
+      </div>
 
-      <section className="card" style={{ marginTop: 24 }}>
-        <h2>Boots</h2>
-        <p className="notice">Total: {data?.count ?? 0}</p>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Boot</th>
-              <th>Last</th>
-              <th>Volume</th>
-              <th>Flex</th>
-              <th>ID</th>
-            </tr>
-          </thead>
-          <tbody>
-            {(data?.boots || []).slice(0, 20).map((boot) => (
-              <tr key={boot.id}>
-                <td>{boot.canonicalName}</td>
-                <td>{boot.lastMm ?? "-"}</td>
-                <td>{boot.volumeClass ?? "-"}</td>
-                <td>{boot.flexIndex ?? "-"}</td>
-                <td>{boot.id}</td>
+      <section className={`card ${styles.section}`}>
+        <div className={styles.sectionHeader}>
+          <h2>Boots</h2>
+          <p className="notice">Total: {data?.count ?? 0}</p>
+        </div>
+        <div className={styles.tableWrap}>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Boot</th>
+                <th>Last</th>
+                <th>Volume</th>
+                <th>Flex</th>
+                <th>ID</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {(data?.boots || []).slice(0, 20).map((boot) => (
+                <tr key={boot.id}>
+                  <td>{boot.canonicalName}</td>
+                  <td>{boot.lastMm ?? "-"}</td>
+                  <td>{boot.volumeClass ?? "-"}</td>
+                  <td>{boot.flexIndex ?? "-"}</td>
+                  <td>{boot.id}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
-      <section className="card" style={{ marginTop: 24 }}>
+      <section className={`card ${styles.section}`}>
         <h2>Add alias</h2>
-        <form onSubmit={addAlias} className="input-row">
+        <form onSubmit={addAlias} className={styles.aliasForm}>
           <input
             value={aliasBootId}
             onChange={(e) => setAliasBootId(e.target.value)}
@@ -110,6 +122,6 @@ export default function AdminPage() {
           </button>
         </form>
       </section>
-    </main>
+    </AppShell>
   );
 }

@@ -1,0 +1,56 @@
+.heroSection {
+  display: grid;
+  gap: 24px;
+  justify-items: center;
+  text-align: center;
+  padding: 24px 0 52px;
+}
+
+.searchArea {
+  width: min(640px, 100%);
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+}
+
+.quickLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.quickLabel {
+  font-weight: 600;
+}
+
+.quickButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.statusCard {
+  width: min(640px, 100%);
+  text-align: left;
+}
+
+.alternativeGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.featuresSection {
+  padding: 24px 0 72px;
+}
+
+@media (max-width: 720px) {
+  .heroSection {
+    padding: 12px 0 36px;
+  }
+}
