@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BootMatch Scraper Config Pack",
+  "type": "object",
+  "required": ["version", "siteKey", "siteName", "baseDomain", "discovery", "parsing"],
+  "properties": {
+    "version": { "type": "string" },
+    "siteKey": { "type": "string", "pattern": "^[a-z0-9-]{2,32}$" },
+    "siteName": { "type": "string", "minLength": 2 },
+    "baseDomain": { "type": "string", "pattern": "^https?://.+$" },
+
+    "robots": {
+      "type": "object",
+      "properties": {
+        "robotsUrl": { "type": "string" },
+        "allowed": { "type": "boolean" },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "discovery": {
+      "type": "object",
+      "required": ["method", "productUrlAllowlist"],
+      "properties": {
+        "method": { "type": "string", "enum": ["sitemap", "category_pagination", "js_heavy"] },
+        "sitemapUrls": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "categoryUrls": { "type": "array", "items": { "type": "string" }, "default": [] },
+
+        "pagination": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["next_link", "page_param", "none"], "default": "none" },
+            "nextSelector": { "type": ["string", "null"] },
+            "pageParam": { "type": ["string", "null"] },
+            "maxPages": { "type": "integer", "minimum": 1, "maximum": 2000, "default": 200 }
+          },
+          "additionalProperties": false
+        },
+
+        "productUrlAllowlist": { "type": "string", "minLength": 3 },
+        "productUrlDenylist": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "productLinkSelectors": { "type": "array", "items": { "type": "string" }, "default": [] }
+      },
+      "additionalProperties": false
+    },
+
+    "parsing": {
+      "type": "object",
+      "required": ["selectors"],
+      "properties": {
+        "preferJsonLd": { "type": "boolean", "default": true },
+        "selectors": {
+          "type": "object",
+          "properties": {
+            "title": { "type": ["string", "null"] },
+            "brand": { "type": ["string", "null"] },
+            "description": { "type": ["string", "null"] },
+            "specsContainer": { "type": ["string", "null"] },
+            "specRow": { "type": ["string", "null"] },
+            "specKey": { "type": ["string", "null"] },
+            "specValue": { "type": ["string", "null"] },
+            "image": { "type": ["string", "null"] }
+          },
+          "additionalProperties": false
+        },
+        "regex": {
+          "type": "object",
+          "properties": {
+            "lastMm": { "type": ["string", "null"] },
+            "flexIndex": { "type": ["string", "null"] }
+          },
+          "additionalProperties": false
+        },
+        "fitHeuristics": {
+          "type": "object",
+          "properties": {
+            "enable": { "type": "boolean", "default": true },
+            "heelHold": { "type": "object", "additionalProperties": { "type": "array", "items": { "type": "string" } } },
+            "instepHeight": { "type": "object", "additionalProperties": { "type": "array", "items": { "type": "string" } } },
+            "forefootShape": { "type": "object", "additionalProperties": { "type": "array", "items": { "type": "string" } } }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "examples": {
+      "type": "object",
+      "properties": {
+        "categoryPageUrls": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "productPageUrls": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

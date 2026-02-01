@@ -11,7 +11,10 @@
     "test": "vitest run",
     "crawl": "tsx src/scrapers/cli.ts",
     "crawl:example": "npm run crawl -- --source=example",
-    "crawl:evo": "npm run crawl -- --source=evo"
+    "crawl:evo": "npm run crawl -- --source=evo",
+    "onboard:site": "tsx src/scrapers/onboarding/cli.ts",
+    "onboard:inspect": "tsx src/scrapers/onboarding/cli.ts inspect",
+    "onboard:generate": "tsx src/scrapers/onboarding/cli.ts generate"
   },
   "dependencies": {
     "@prisma/client": "^5.20.0",

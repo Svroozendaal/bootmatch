@@ -1,0 +1,75 @@
+{
+  "version": "1.0",
+  "siteKey": "sitex",
+  "siteName": "SiteX",
+  "baseDomain": "https://sitex.com",
+
+  "robots": {
+    "robotsUrl": "https://sitex.com/robots.txt",
+    "notes": "Best-effort: category + product appear allowed for User-agent: *",
+    "allowed": true
+  },
+
+  "discovery": {
+    "method": "category_pagination",
+    "sitemapUrls": ["https://sitex.com/sitemap.xml"],
+    "categoryUrls": ["https://sitex.com/ski-boots"],
+    "pagination": {
+      "type": "next_link",
+      "nextSelector": "a[rel='next']",
+      "pageParam": null,
+      "maxPages": 200
+    },
+    "productUrlAllowlist": "https:\\/\\/sitex\\.com\\/(products|p)\\/.*",
+    "productUrlDenylist": ["\\/collections\\/", "\\/blog\\/", "\\/account\\/", "\\/cart\\/" ],
+    "productLinkSelectors": [
+      "a[href*='/products/']",
+      "a.product-card"
+    ]
+  },
+
+  "parsing": {
+    "preferJsonLd": true,
+    "selectors": {
+      "title": "h1",
+      "brand": "[data-brand]",
+      "description": "[data-description], .product-description",
+      "specsContainer": ".specs, .product-specs",
+      "specRow": ".specs-row, table tr, dl > div",
+      "specKey": "th, dt, .label",
+      "specValue": "td, dd, .value",
+      "image": "img[data-zoom-image], .product-gallery img"
+    },
+    "regex": {
+      "lastMm": "(?:\\b|\\D)(98|99|100|101|102|103|104)\\s?mm\\b",
+      "flexIndex": "\\b(70|80|90|100|110|120|130|140)\\b"
+    },
+    "fitHeuristics": {
+      "enable": true,
+      "heelHold": {
+        "narrow": ["locked-in heel", "tight heel", "snug heel", "anatomical heel"],
+        "roomy": ["roomy heel", "wide heel", "generous heel"],
+        "medium": ["supportive heel", "secure heel"]
+      },
+      "instepHeight": {
+        "low": ["low instep"],
+        "high": ["high instep", "generous instep"],
+        "medium": ["medium instep"]
+      },
+      "forefootShape": {
+        "tapered": ["tapered forefoot"],
+        "roomy": ["roomy toe box", "wide toe box"],
+        "neutral": ["balanced forefoot", "medium forefoot"]
+      }
+    }
+  },
+
+  "examples": {
+    "categoryPageUrls": ["https://sitex.com/ski-boots"],
+    "productPageUrls": [
+      "https://sitex.com/products/brand-model-110",
+      "https://sitex.com/products/brand-model-100"
+    ],
+    "notes": "Pages appear server-rendered; JSON-LD present."
+  }
+}

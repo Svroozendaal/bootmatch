@@ -45,6 +45,9 @@ npm run crawl -- --source=example --mode=ingest --limit=10
 Raw page data is stored in `Source.rawSpecsBlob`, and crawl bookkeeping is stored in `CrawlUrl`.
 Respect robots.txt and site terms when adding real URLs.
 
+## Scraper onboarding
+See `docs/SCRAPER_ONBOARDING.md` for the agent-assisted onboarding workflow and CLI tooling.
+
 ## Push to GitHub
 ```bash
 git init
