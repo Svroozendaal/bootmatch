@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+ï»¿import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BootDTO } from "../../types/boot";
 
@@ -84,7 +84,7 @@ export default function ResultsPage() {
             </ul>
             {match.bestOffer && (
               <p>
-                From {match.bestOffer.currency} {match.bestOffer.price.toFixed(0)} ·{" "}
+                From {match.bestOffer.currency} {match.bestOffer.price.toFixed(0)} ï¿½{" "}
                 <a href={match.bestOffer.url} target="_blank" rel="noreferrer">
                   Buy at {match.bestOffer.retailer}
                 </a>

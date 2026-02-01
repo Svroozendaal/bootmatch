@@ -24,3 +24,34 @@ A skill is a set of local instructions to follow that is stored in a `SKILL.md` 
   - When variants exist (frameworks, providers, domains), pick only the relevant reference file(s) and note that choice.
 - Safety and fallback: If a skill can't be applied cleanly (missing files, unclear instructions), state the issue, pick the next-best approach, and continue.
 </INSTRUCTIONS>
+
+## Project overview
+BootMatch is a minimal MVP that resolves a renter's ski boot (brand + model + optional flex/year) to a canonical boot record and returns the top similar-fitting boots.
+
+## Stack
+- Next.js 14 (pages router) + React 18
+- Prisma + SQLite (local)
+- Scraper CLI (tsx) for ingestion
+
+## Key areas and pointers
+- Scraper (separate runtime)
+  - Entry: `src/scrapers/cli.ts`, `src/scrapers/runner.ts`
+  - Sources: `src/scrapers/sources/example/*`, `src/scrapers/sources/evo/*`
+  - Shared helpers: `src/scrapers/common/*`
+- User app (frontend)
+  - UI pages: `src/pages/index.tsx`, `src/pages/results/[bootId].tsx`, `src/pages/admin.tsx`
+  - Global styles: `src/styles/globals.css`
+- App backend (API + logic)
+  - API routes: `src/pages/api/*.ts`, `src/pages/api/admin/*.ts`
+  - Matching/resolution: `src/lib/match.ts`, `src/lib/resolver.ts`, `src/lib/fuzzy.ts`, `src/lib/normalize.ts`
+  - DB access: `src/lib/db.ts`, `prisma/schema.prisma`
+
+## Data and scripts
+- Seed data: `src/data/boots.seed.json`
+- Seed scripts: `src/lib/seed.ts` (API), `scripts/seed.js` (CLI)
+- Tests: `tests/*`
+
+## Dev commands
+- App: `npm run dev`
+- Seed DB: `npm run seed`
+- Scraper: `npm run crawl -- --source=example --mode=discover|parse|ingest`

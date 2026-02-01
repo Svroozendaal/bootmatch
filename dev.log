@@ -1,0 +1,31 @@
+
+> bootmatch@0.1.0 dev
+> next dev --port 3002
+
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3002
+  - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 3.4s
+ ○ Compiling /results/[bootId] ...
+ ⨯ ./src/pages/results/[bootId].tsx
+Error: Failed to read source code from C:\Workspace\Bootmatch\src\pages\results\[bootId].tsx
+
+Caused by:
+    stream did not contain valid UTF-8
+ ⨯ ./src/pages/results/[bootId].tsx
+Error: Failed to read source code from C:\Workspace\Bootmatch\src\pages\results\[bootId].tsx
+
+Caused by:
+    stream did not contain valid UTF-8
+ GET /results/cml1dekwb001qdu25wleqhmp8 500 in 5521ms
+ ✓ Compiled /_error in 451ms (263 modules)
+ ○ Compiling /results/[bootId] ...
+ ✓ Compiled /results/[bootId] in 572ms (328 modules)
+Warning: viewport meta tags should not be used in _document.js's <Head>. https://nextjs.org/docs/messages/no-document-viewport-meta
+ GET /results/cml1dekwb001qdu25wleqhmp8 200 in 1144ms
+ ✓ Compiled /api/match in 314ms (132 modules)
+ GET /api/match?bootId=cml1dekwb001qdu25wleqhmp8 200 in 529ms
+ ○ Compiling / ...
+ ✓ Compiled / in 704ms (332 modules)

@@ -75,7 +75,7 @@ export default function HomePage() {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Type your rented ski boot (e.g., ëSalomon S/Pro 100í)"
+            placeholder="Type your rented ski boot (e.g., ‚ÄòSalomon S/Pro 100‚Äô)"
           />
           <button className="button" type="submit" disabled={loading}>
             {loading ? "Finding..." : "Find similar boots"}
@@ -117,7 +117,7 @@ export default function HomePage() {
         {status === "not_found" && (
           <div className="card">
             <strong>No match found.</strong>
-            <p className="notice">Try another spelling or include a flex like ì110î.</p>
+            <p className="notice">Try another spelling or include a flex like ‚Äú110‚Äù.</p>
           </div>
         )}
       </section>
